@@ -81,6 +81,12 @@ def dashboard():
     redirect('/signin')
 
 
+@app.route('/logout')
+def logout():
+    session.pop('username')
+    return redirect('/signin')
+
+
 @app.route("/database", methods=["GET"])
 def data():
     alldata = Table.query.all()
