@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import bcrypt
@@ -8,6 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///project.db"
 app.config['SQLALCHEMY_DATABASE_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+app.secret_key = 'SECRET_KEY'
 
 # class name is table name
 class Table(db.Model):
@@ -33,7 +34,9 @@ def signin():
         password = request.form.get("password")
         user = Table.query.filter_by(username=username).first()
         if user and bcrypt.checkpw(password.encode('utf-8'), user.password):
-            return "Login Successfull"
+            session['username'] = user.username
+            # session["password"] = user.password
+            return redirect('/dashboard')
         if not user:
             return render_template('signin.html', msg="User does not exists.")
         if user and user.password != password:
@@ -71,11 +74,18 @@ def signup():
     return render_template('signup.html')
 
 
+@app.route('/dashboard', methods=["GET"])
+def dashboard():
+    if session["username"]:
+        return f"Welcome {session["username"]}!"
+    redirect('/signin')
+
+
 @app.route("/database", methods=["GET"])
 def data():
     alldata = Table.query.all()
     # print(alldata)
-    return render_template('index.html', alldatas=alldata)
+    return render_template('database.html', alldatas=alldata)
 
 
 if __name__ == '__main__':
