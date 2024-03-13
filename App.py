@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import bcrypt
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///project.db"
@@ -16,16 +17,12 @@ class Table(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self) -> str:
-        return f"{self.sno} - {self.username}"
+        return f"{self.username} is Registered"
 
 
 # initialize the database
 with app.app_context():
     db.create_all()
-
-# class Users(UserMixin, db.Model):
-#     id = db.column(db.Integer, primary_key=True)
-#     username =
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -35,8 +32,12 @@ def signin():
         username = request.form.get("username")
         password = request.form.get("password")
         user = Table.query.filter_by(username=username).first()
-        if user and user.password == password:
+        if user and bcrypt.checkpw(password.encode('utf-8'), user.password):
             return "Login Successfull"
+        if not user:
+            return render_template('signin.html', msg="User does not exists.")
+        if user and user.password != password:
+            return render_template('signin.html', msg="Incorrect Password")
 
     return render_template('signin.html')
 
@@ -48,20 +49,25 @@ def signup():
         ipassword = request.form.get("password")
         icpassword = request.form.get("cpassword")
         user = Table.query.filter_by(username = iusername).first()
-        if(user):
+        if user:
             return render_template('signup.html', msg="User already exists")
-        if(len(ipassword) < 5):
+        if len(ipassword) < 5:
             return render_template('signup.html', msg="Password is too short")
         if ipassword == icpassword:
+            # Generating hashed Password
+            # salt = bcrypt.gensalt()
+            hashPassword = bcrypt.hashpw(ipassword.encode('utf-8'), bcrypt.gensalt())
+
             user = Table(username=iusername,
-                         password=ipassword)
-            # col = Table(title="Title of the Note 1000000", desc="Description of the Note")
+                         password=hashPassword)
             db.session.add(user)
             db.session.commit()
             # alldata = Table.query.all()
             # print(alldata)
             print(user)
             return redirect(url_for('signin'))
+        else:
+            return render_template('signup.html', msg="Password does not match.")
     return render_template('signup.html')
 
 
