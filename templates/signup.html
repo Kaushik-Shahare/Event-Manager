@@ -62,28 +62,28 @@
         <span></span> <span></span> <span></span> <span></span> <span></span>
         <span></span> <span></span> <span></span> <span></span> <span></span>
 
-        <div class="signin">
+        <form class="signin" method="POST">
             <div class="content">
                 <h2>Sign up</h2>
                 <div class="form">
                     <div class="inputBox">
-                        <input type="text" required /> <i>Username</i>
+                        <input type="text" name="username" required /> <i>Username</i>
                     </div>
                     <div class="inputBox">
-                        <input type="password" required /> <i>Password</i>
+                        <input type="password" name="password" required /> <i>Password</i>
                     </div>
                     <div class="inputBox">
-                        <input type="password" required /> <i>Confirm Password</i>
+                        <input type="password" name="cpassword" required /> <i>Confirm Password</i>
                     </div>
                     <div class="links">
-                        <a href="#">Back to Login page</a>
+                        <a href="/">Back to Login page</a>
                     </div>
                     <div class="inputBox">
                         <input type="submit" value="Register" />
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 </body>
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database</title>
+</head>
+<body>
+    {% for data in alldatas %}
+    <tr scope= "row"> {{ loop.index }} </th>
+<!--    <td> {{ data.sno}} </td>-->
+        <a>    |   </a>
+        <td> {{ data.username}} </td>
+        <a>    |   </a>
+        <td> {{ data.password}} </td>
+        <hr />
+<!--    <td> {{ data.date_created}} </td>-->
+    {% endfor %}
+</body>
+</html>
+
