@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -47,21 +47,28 @@ def signup():
         iusername = request.form.get("username")
         ipassword = request.form.get("password")
         icpassword = request.form.get("cpassword")
+        user = Table.query.filter_by(username = iusername).first()
+        if(user):
+            return render_template('signup.html', msg="User already exists")
+        if(len(ipassword) < 5):
+            return render_template('signup.html', msg="Password is too short")
         if ipassword == icpassword:
             user = Table(username=iusername,
                          password=ipassword)
             # col = Table(title="Title of the Note 1000000", desc="Description of the Note")
             db.session.add(user)
             db.session.commit()
-            alldata = Table.query.all()
-            print(alldata)
+            # alldata = Table.query.all()
+            # print(alldata)
+            print(user)
+            return redirect(url_for('signin'))
     return render_template('signup.html')
 
 
 @app.route("/database", methods=["GET"])
 def data():
     alldata = Table.query.all()
-    print(alldata)
+    # print(alldata)
     return render_template('index.html', alldatas=alldata)
 
 
