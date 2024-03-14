@@ -2,6 +2,9 @@ from flask import Flask, render_template, url_for, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import bcrypt
+# Password strength Verification
+from zxcvbn import zxcvbn
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///project.db"
@@ -9,6 +12,7 @@ app.config['SQLALCHEMY_DATABASE_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 app.secret_key = 'SECRET_KEY'
+
 
 # class name is table name
 class Table(db.Model):
@@ -54,8 +58,8 @@ def signup():
         user = Table.query.filter_by(username = iusername).first()
         if user:
             return render_template('signup.html', msg="User already exists")
-        if len(ipassword) < 5:
-            return render_template('signup.html', msg="Password is too short")
+        if zxcvbn(ipassword)["score"] < 2:
+            return render_template('signup.html', msg=f"{zxcvbn(ipassword)['feedback']['warning']}")
         if ipassword == icpassword:
             # Generating hashed Password
             # salt = bcrypt.gensalt()
