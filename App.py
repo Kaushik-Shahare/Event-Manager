@@ -13,7 +13,6 @@ import bcrypt
 # Password strength Verification
 from zxcvbn import zxcvbn
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///project.db"
 app.config['SQLALCHEMY_DATABASE_MODIFICATIONS'] = False
@@ -38,7 +37,7 @@ class UserData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     note = db.Column(db.String(500), nullable=False)
     user_id = db.Column(db.Integer, ForeignKey('user.id'))
-    
+
     def __repr__(self) -> str:
         return f"{self.note} is added"
 
@@ -73,7 +72,7 @@ def signup():
         iusername = request.form.get("username")
         ipassword = request.form.get("password")
         icpassword = request.form.get("cpassword")
-        user = User.query.filter_by(username = iusername).first()
+        user = User.query.filter_by(username=iusername).first()
         if user:
             return render_template('signup.html', msg="User already exists")
         if zxcvbn(ipassword)["score"] < 2:
@@ -84,7 +83,7 @@ def signup():
             hashPassword = bcrypt.hashpw(ipassword.encode('utf-8'), bcrypt.gensalt())
 
             user = User(username=iusername,
-                         password=hashPassword)
+                        password=hashPassword)
             db.session.add(user)
             db.session.commit()
             # alldata = Table.query.all()
@@ -96,11 +95,21 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route('/dashboard', methods=["GET"])
+@app.route('/dashboard', methods=["GET", "POST"])
 def dashboard():
     if session["username"]:
-        return f"Welcome {session["username"]}!"
-    redirect('/signin')
+        if request.method=="POST":
+            note = request.form.get("note")
+            Note = UserData(user_id=session["username"],
+                            note=note)
+            if Note:
+                db.session.add(Note)
+                db.session.commit()
+                return redirect('/dashboard')
+        notes = UserData.query.filter_by(user_id=session["username"])
+
+        return render_template('dashboard.html', alldatas=notes)
+    return redirect('/signin')
 
 
 @app.route('/logout')

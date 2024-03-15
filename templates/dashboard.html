@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database</title>
+</head>
+<body>
+    <form method="POST">
+        <input type="text" name="note" placeholder="Note">
+        <button type="submit">Add</button>
+    </form>
+
+    {% for data in alldatas %}
+    <tr scope= "row"> {{ loop.index }} </th>
+<!--    <td> {{ data.sno}} </td>-->
+        <a>    |   </a>
+        <td> {{ data.note}} </td>
+        <br />
+<!--        <td> {{ data.password}} </td>-->
+        <hr />
+<!--    <td> {{ data.date_created}} </td>-->
+    {% endfor %}
+</body>
+</html>
+
