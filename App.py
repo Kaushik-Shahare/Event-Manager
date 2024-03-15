@@ -1,7 +1,15 @@
 from flask import Flask, render_template, url_for, request, redirect, session
+
+# Database 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
+
 from datetime import datetime
+
+# Password hashing
 import bcrypt
+
 # Password strength Verification
 from zxcvbn import zxcvbn
 
@@ -15,14 +23,24 @@ app.secret_key = 'SECRET_KEY'
 
 
 # class name is table name
-class Table(db.Model):
-    sno = db.Column(db.Integer, primary_key=True)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(30), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    notes = db.relationship('UserData', backref='user', lazy=True)
 
     def __repr__(self) -> str:
         return f"{self.username} is Registered"
+
+
+class UserData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    note = db.Column(db.String(500), nullable=False)
+    user_id = db.Column(db.Integer, ForeignKey('user.id'))
+    
+    def __repr__(self) -> str:
+        return f"{self.note} is added"
 
 
 # initialize the database
@@ -36,7 +54,7 @@ def signin():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        user = Table.query.filter_by(username=username).first()
+        user = User.query.filter_by(username=username).first()
         if user and bcrypt.checkpw(password.encode('utf-8'), user.password):
             session['username'] = user.username
             # session["password"] = user.password
@@ -55,7 +73,7 @@ def signup():
         iusername = request.form.get("username")
         ipassword = request.form.get("password")
         icpassword = request.form.get("cpassword")
-        user = Table.query.filter_by(username = iusername).first()
+        user = User.query.filter_by(username = iusername).first()
         if user:
             return render_template('signup.html', msg="User already exists")
         if zxcvbn(ipassword)["score"] < 2:
@@ -65,7 +83,7 @@ def signup():
             # salt = bcrypt.gensalt()
             hashPassword = bcrypt.hashpw(ipassword.encode('utf-8'), bcrypt.gensalt())
 
-            user = Table(username=iusername,
+            user = User(username=iusername,
                          password=hashPassword)
             db.session.add(user)
             db.session.commit()
@@ -93,7 +111,7 @@ def logout():
 
 @app.route("/database", methods=["GET"])
 def data():
-    alldata = Table.query.all()
+    alldata = User.query.all()
     # print(alldata)
     return render_template('database.html', alldatas=alldata)
 
