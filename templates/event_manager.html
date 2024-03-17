@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create Page</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Dashboard</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/event">Upcoming Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/event">Event Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/event_manager">Event Management</a>
+          </li>
+          {% if 'role' in session and session['role'] == 'Admin' or 'role' in
+          session and session['role'] == 'Co-Admin' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/event/create">Create Event</a>
+          </li>
+          {% endif %} {% if 'role' in session and session['role'] == 'Admin' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/user_management">User Management</a>
+          </li>
+          {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          {% if 'username' in session %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              👤 {{ session['username'] }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/signin">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="/signup">Sign Up</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    {% if msg %}
+    <div style="background-color: lightblue; text-align: center">{{msg}}</div>
+    {% endif %}
+
+    <div class="container mt-4">
+      <h2>Event Management</h2>
+
+      <form method="POST">
+        <input type="text" name="search" placeholder="Search by username" />
+        <input type="submit" value="Search" />
+      </form>
+      <a>Total Number of Users Registered = {{ total_result }} </a>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Event Name</th>
+            <th>Username</th>
+            <th>Creation Date</th>
+          </tr>
+        </thead>
+        <tbody id="userTable">
+          {% for event in events %}
+          <tr>
+            <td>{{ event.id }}</td>
+            <td>{{ event.event.title}}</td>
+            <td>{{ event.user_id}}</td>
+            <td>{{ event.date_created.strftime('%Y-%m-%d') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="pagination">
+        {% if events.has_prev %}
+        <a href="{{ url_for('user_management', page=users.prev_num) }}"
+          >Previous</a
+        >
+        {% endif %} {% if events.has_next %}
+        <a href="{{ url_for('user_management', page=users.next_num) }}">Next</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
