@@ -29,8 +29,6 @@ class User(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     role = db.Column(db.String(30), default='default')
 
-    # notes = db.relationship('UserData', backref='user', lazy=True)
-
     def __repr__(self) -> str:
         return f"{self.username} is Registered"
 
@@ -47,7 +45,7 @@ class Event(db.Model):
     creator = db.relationship('User', backref=db.backref('events', lazy=True))
 
     def __repr__(self) -> str:
-        return f"{self.title} is Organized by {self.organizer.username}"
+        return f"{self.title} is Organized by {self.organizer_name}"
 
 
 class Registration(db.Model):
@@ -58,6 +56,9 @@ class Registration(db.Model):
 
     user = db.relationship('User', backref=db.backref('registrations', lazy=True))
     event = db.relationship('Event', backref=db.backref('registrations', lazy=True))
+
+    def __repr__(self):
+        return f"{self.user.username} has registered for {self.event.title}"
 
 
 # initialize the database
@@ -214,8 +215,8 @@ def event_manager():
         search = request.form.get('search')
         if search:
             # search_result = Registration.query.filter(Registration.event.title.like('%' + search + '%')).all()
-            search_result= Registration.query.filter(Registration.event.has(title='%'+search+'%')).all()
-            total_result = Registration.query.filter(Registration.event.has(title='%'+search+'%')).count()
+            search_result = Registration.query.filter(Registration.event.has(title='%' + search + '%')).all()
+            total_result = Registration.query.filter(Registration.event.has(title='%' + search + '%')).count()
             return render_template('event_manager.html', events=search_result, total_result=total_result)
         else:
             flash('No results found')
