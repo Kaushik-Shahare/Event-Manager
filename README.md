@@ -5,6 +5,17 @@ Link to the site
 ```
   https://python-project-with-flask-fxr9lbvtc-kaushik-shahares-projects.vercel.app/
 ```
+Please use the following Admin credentials for sign in cuz the database is not yet deployed on MongoDB.
+
+Username: 
+```
+admin
+```
+Password:
+```
+1Parul2University3
+```
+
 
 This is a flask project created using flask for _**Event Management**_.
 
