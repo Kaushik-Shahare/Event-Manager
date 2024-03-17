@@ -58,7 +58,7 @@ class Registration(db.Model):
     event = db.relationship('Event', backref=db.backref('registrations', lazy=True))
 
     def __repr__(self):
-        return f"{self.user.username} has registered for {self.event.title}"
+        return f"{self.user.username} has registered for {self.event}"
 
 
 # initialize the database
@@ -124,7 +124,7 @@ def logout():
 
 @app.route('/database', methods=["GET"])
 def data():
-    alldata = User.query.all()
+    alldata = Event.query.all()
     # print(alldata)
     return render_template('database.html', alldatas=alldata)
 
@@ -214,12 +214,15 @@ def event_manager():
     if request.method == 'POST':
         search = request.form.get('search')
         if search:
-            # search_result = Registration.query.filter(Registration.event.title.like('%' + search + '%')).all()
-            search_result = Registration.query.filter(Registration.event.has(title='%' + search + '%')).all()
-            total_result = Registration.query.filter(Registration.event.has(title='%' + search + '%')).count()
-            return render_template('event_manager.html', events=search_result, total_result=total_result)
+            search_result = Event.query.filter(Event.title == search).first()
+            if search_result:
+                search_result = Registration.query.filter(Registration.event_id == search_result.id).all()
+             
+                return render_template('event_manager.html', events=search_result, total_result=total_result)
+            else:
+                flash('No results found')
         else:
-            flash('No results found')
+            flash('Please enter a search term')
 
     msg = get_flashed_messages()
     return render_template('event_manager.html', events=reg, msg=msg, total_result=total_result)

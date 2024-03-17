@@ -89,6 +89,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th>Sr.no</th>
             <th>Username</th>
             <th>Creation Date</th>
             <th>Role</th>
@@ -98,6 +99,7 @@
         <tbody id="userTable">
           {% for user in users %}
           <tr>
+            <td>{{ user.id}}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.date_created.strftime('%Y-%m-%d') }}</td>
             <td>
