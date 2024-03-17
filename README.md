@@ -1,11 +1,20 @@
-# Flask Project
+# Flask Project [Event Manager]
 
-This is a small project created using flask.
+This is a flask project created using flask for _**Event Management**_.
 
 The main purpose of this project is as follows:
+
 - Create a Sign up page
 - Create a Login Page
-- Create a Dashboard to show a user data
+- Show upcomming events.
+- Register for upcoming events
+- Manage Users
+- Show list of Registered users for an Event.
 
 ## Signup page
+
 - used [zxcvbn](https://github.com/dwolfhub/zxcvbn-python) library to add password validation.
+
+## Database
+
+- used sqllite
