@@ -1,6 +1,7 @@
-# [Flask Project [Event Manager]](https://python-project-with-flask-fxr9lbvtc-kaushik-shahares-projects.vercel.app/)
+# [Flask Project [Event Manager]](https://python-project-with-flask.vercel.app/)
 
 Link to the site
+
 ```
   https://python-project-with-flask-fxr9lbvtc-kaushik-shahares-projects.vercel.app/
 ```
