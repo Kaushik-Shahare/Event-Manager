@@ -13,7 +13,7 @@
       href="{{url_for('static',filename='css/dashboard.css')}}"
     />
   </head>
-  <body>
+  <body class="{{ session['theme'] }}">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/event">E.Manager</a>
       <button
