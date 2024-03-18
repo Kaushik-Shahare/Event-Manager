@@ -217,6 +217,7 @@ def event_manager():
             search_result = Event.query.filter(Event.title == search).first()
             if search_result:
                 search_result = Registration.query.filter(Registration.event_id == search_result.id).all()
+                total_result = len(search_result)
              
                 return render_template('event_manager.html', events=search_result, total_result=total_result)
             else:

@@ -8,10 +8,14 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/dashboard.css')}}"
+    />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Dashboard</a>
+      <a class="navbar-brand" href="/event">E.Manager</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -80,7 +84,7 @@
 
     <div id="eventRegistration" class="container mt-4">
       <h2>Create Event</h2>
-      <div id="eventRegistration" class="container mt-4">
+      <div id="eventRegistration1" class="container mt-4">
         <form action="/event/create" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Title</label>

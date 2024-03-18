@@ -8,10 +8,11 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/dashboard.css')}}" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Dashboard</a>
+      <a class="navbar-brand" href="/event">E.Manager</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -79,14 +80,14 @@
     {% endif %}
 
     <div class="container mt-4">
-      <h2>User Management</h2>
+      <h2 class="mb-3">User Management</h2>
 
-      <form method="POST">
+      <form method="POST" class="mb-3">
         <input type="text" name="search" placeholder="Search by username" />
         <input type="submit" value="Search" />
       </form>
 
-      <table class="table">
+      <table class="table mb-3">
         <thead>
           <tr>
             <th>Sr.no</th>
