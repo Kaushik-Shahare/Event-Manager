@@ -13,7 +13,7 @@
       href="{{url_for('static',filename='css/dashboard.css')}}"
     />
   </head>
-  <body>
+  <body class="{{ session['theme'] }}">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/event">E.Manager</a>
       <button
@@ -50,6 +50,9 @@
           {% endif %}
         </ul>
         <ul class="navbar-nav ml-auto">
+          <form action="/toggle_theme" method="post" id="toggle-theme-form">
+            <input type="submit" value="Toggle Theme" />
+          </form>
           {% if 'username' in session %}
           <li class="nav-item dropdown">
             <a

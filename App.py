@@ -76,6 +76,7 @@ def signin():
         if user and bcrypt.checkpw(password.encode('utf-8'), user.password):
             session['username'] = user.username
             session['role'] = user.role
+            session['theme'] = ''
             # return redirect('/dashboard')
             return redirect('/event')
         if not user:
@@ -119,6 +120,7 @@ def signup():
 def logout():
     session.pop('username')
     session.pop('role')
+    session.pop('theme')
     return redirect('/signin')
 
 
@@ -277,6 +279,12 @@ def create_admin_account():
         db.session.commit()
     return redirect('signin')
 
+@app.route('/toggle_theme', methods=['POST'])
+def toggle_theme():
+    current_theme = session['theme']
+    new_theme = '' if current_theme == 'light-theme' else 'light-theme'
+    session['theme'] = new_theme
+    return redirect(request.referrer)
 
 if __name__ == '__main__':
     app.run(debug=True)

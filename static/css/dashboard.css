@@ -1,3 +1,4 @@
+/* Dark mode CSS for the dashboard */
 body {
   background-color: #2b2b2b;
   color: #f5f5f5;
@@ -105,4 +106,116 @@ textarea {
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(100%);
+}
+
+/* Light mode CSS for the dashboard */
+body.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.light-theme .navbar {
+  background-color: #f8f9fa !important;
+}
+
+body.light-theme .nav-link,
+body.light-theme .dropdown-item {
+  color: #000000 !important;
+}
+
+body.light-theme .navbar-brand {
+  color: #000000 !important;
+}
+
+body.light-theme .navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body.light-theme .msg {
+  color: #000000;
+  background-color: #d3d3d3;
+}
+
+body.light-theme .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+body.light-theme .btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+body.light-theme .card {
+  background-color: #ffffff;
+}
+
+body.light-theme .card-text {
+  color: #000000;
+}
+
+body.light-theme .text-muted {
+  color: #6c757d !important;
+}
+
+body.light-theme .container {
+  background-color: #ffffff;
+}
+
+body.light-theme table {
+  color: #000000;
+}
+
+body.light-theme th,
+body.light-theme td {
+  color: #000000;
+}
+
+body.light-theme input {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.light-theme ::placeholder {
+  color: #000000;
+  opacity: 0.5;
+}
+
+body.light-theme .dropdown-menu {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.light-theme .dropdown-item {
+  color: #000000;
+}
+
+body.light-theme .dropdown-item:hover {
+  color: #ffffff;
+  background-color: #cccccc;
+}
+
+body.light-theme select {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.light-theme select option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.light-theme input,
+body.light-theme textarea {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.light-theme ::placeholder {
+  color: #000000 !important;
+  opacity: 0.5 !important;
+}
+
+body.light-theme input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0%);
 }
