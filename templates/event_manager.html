@@ -116,11 +116,11 @@
       </table>
       <div class="pagination">
         {% if events.has_prev %}
-        <a href="{{ url_for('user_management', page=events.prev_num) }}"
+        <a href="{{ url_for('event_manager', page=events.prev_num) }}"
           >Previous</a
         >
         {% endif %} {% if events.has_next %}
-        <a href="{{ url_for('user_management', page=events.next_num) }}">Next</a>
+        <a href="{{ url_for('event_manager', page=events.next_num) }}">Next</a>
         {% endif %}
       </div>
     </div>

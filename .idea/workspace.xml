@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3711ad8a-36ed-4aee-a9a1-30241dbefe9f" name="Changes" comment="Initial commit">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_03_24,_6_31 pm_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_03_24__6_31pm__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/project.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/project.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/event.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/event_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event_manager.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
