@@ -3,7 +3,7 @@
 Link to the site
 
 ```
-  https://python-project-with-flask-fxr9lbvtc-kaushik-shahares-projects.vercel.app/
+  https://python-project-with-flask.vercel.app/
 ```
 Please use the following Admin credentials for sign in cuz the database is not yet deployed on MongoDB.
 
