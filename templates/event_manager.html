@@ -89,7 +89,7 @@
       <h2 class="mb-3">Event Management</h2>
 
       <form method="POST" class="mb-3">
-        <input type="text" name="search" placeholder="Search by username" />
+        <input type="text" name="search" placeholder="Search by Event Name" />
         <input type="submit" value="Search" />
       </form>
       <a>Total Number of Users Registered = {{ total_result }} </a>
@@ -116,11 +116,11 @@
       </table>
       <div class="pagination">
         {% if events.has_prev %}
-        <a href="{{ url_for('user_management', page=users.prev_num) }}"
+        <a href="{{ url_for('user_management', page=events.prev_num) }}"
           >Previous</a
         >
         {% endif %} {% if events.has_next %}
-        <a href="{{ url_for('user_management', page=users.next_num) }}">Next</a>
+        <a href="{{ url_for('user_management', page=events.next_num) }}">Next</a>
         {% endif %}
       </div>
     </div>
