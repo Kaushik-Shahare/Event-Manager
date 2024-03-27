@@ -286,5 +286,6 @@ def toggle_theme():
     session['theme'] = new_theme
     return redirect(request.referrer)
 
+
 if __name__ == '__main__':
     app.run(debug=True)
