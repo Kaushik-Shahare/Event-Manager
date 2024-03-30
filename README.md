@@ -1,11 +1,17 @@
-# [Flask Project [Event Manager]](https://python-project-with-flask.vercel.app/)
+# [Flask Project [Event Manager]](https://evt-manager.onrender.com)
 
 Link to the site
 
 ```
-  https://python-project-with-flask.vercel.app/
+    https://evt-manager.onrender.com
 ```
-Please use the following Admin credentials for sign in cuz the database is not yet deployed on MongoDB.
+
+Link to the static site
+
+```
+    https://python-project-with-flask.vercel.app/
+```
+Please use the following Admin credentials for signin to test out full functionality of the site.
 
 Username: 
 ```
