@@ -16,3 +16,4 @@ typing_extensions==4.10.0
 Werkzeug==3.0.1
 WTForms==3.1.2
 zxcvbn==4.4.28
+gunicorn==21.2.0
