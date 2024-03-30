@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3711ad8a-36ed-4aee-a9a1-30241dbefe9f" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/templates/details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.py" beforeDir="false" afterPath="$PROJECT_DIR$/App.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create_event.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_event.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/event.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/event_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_management.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +57,36 @@
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="App" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Flask-TEST" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DATABASE_URL" value="postgresql://event_manager_4rny_user:TwrwBISHySowmZRJ9whbIpBuyAomg54V@dpg-co3qm5i1hbls73blh8h0-a.singapore-postgres.render.com/event_manager_4rny" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/App.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.App" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

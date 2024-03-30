@@ -287,5 +287,10 @@ def toggle_theme():
     return redirect(request.referrer)
 
 
+# @app.route('/details', methods=['GET', 'POST'])
+# def details():
+    return render_template('details.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
