@@ -102,7 +102,7 @@
                   Event Date : {{ event.date }}
                 </small>
               </p>
-              <a href="/event" class="btn btn-primary">Details</a>
+              <a href="{{ url_for('details', event_id=event.id) }}" class="btn btn-primary">Details</a>
             </div>
           </div>
         </div>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>session['details']</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/dashboard.css')}}"
+    />
+</head>
+<body class="{{ session['theme'] }}">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/event">E.Manager</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/event#upcomingEvents">Upcoming Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/event#eventRegistration"
+            >Event Registration</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/event_manager">Event Management</a>
+        </li>
+        {% if 'role' in session and session['role'] == 'Admin' or 'role' in
+        session and session['role'] == 'Co-Admin' %}
+        <li class="nav-item">
+          <a class="nav-link" href="/event/create">Create Event</a>
+        </li>
+        {% endif %} {% if 'role' in session and session['role'] == 'Admin' %}
+        <li class="nav-item">
+          <a class="nav-link" href="/user_management">User Management</a>
+        </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <form action="/toggle_theme" method="post" id="toggle-theme-form" class="border-0">
+          <input type="submit" class="form-control border-0" value="{% if session['theme'] == 'light-theme' %} &#9788 {% else %} &#9790 {% endif %}" />
+        </form>
+        {% if 'username' in session %}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            👤 {{ session['username'] }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/logout">Logout</a>
+          </div>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/signin">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary" href="/signup">Sign Up</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  {% if msg %}
+  <div class="msg">{{msg}}</div>
+  {% endif %}
+  <div class="card" style="width: 18rem;">
+    <!-- <img src="{{ event.image_url }}" class="card-img-top" alt="Event image"> -->
+    <div class="card-body">
+      <h5 class="card-title">{{ event.title }}</h5>
+      <p class="card-text">{{ event.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Date: {{ event.date }}</li>
+      <li class="list-group-item">Location: {{ event.location }}</li>
+      <li class="list-group-item">Organizer: {{ event.organizer }}</li>
+    </ul>
+    <div class="card-body">
+      <!-- <a href="{{ url_for('event_details', id=event.id) }}" class="card-link">Event Details</a> -->
+    </div>
+  </div>
+
+</body>
+</html>
