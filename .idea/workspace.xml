@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3711ad8a-36ed-4aee-a9a1-30241dbefe9f" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/project.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/project.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/modules/static/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/templates/create_event.html" beforeDir="false" afterPath="$PROJECT_DIR$/modules/templates/create_event.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/templates/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/modules/templates/details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/templates/event.html" beforeDir="false" afterPath="$PROJECT_DIR$/modules/templates/event.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/templates/event_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/modules/templates/event_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/templates/user_management.html" beforeDir="false" afterPath="$PROJECT_DIR$/modules/templates/user_management.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
