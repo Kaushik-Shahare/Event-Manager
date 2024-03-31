@@ -24,9 +24,11 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(200), nullable=False)
+    long_description = db.Column(db.String(2000), nullable=False)
     date = db.Column(db.DateTime, nullable=False)
     location = db.Column(db.String(80), nullable=False)
     organizer_name = db.Column(db.String(80), nullable=True)
+    image_url = db.Column(db.String(200), nullable=False)
 
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     creator = db.relationship('User', backref=db.backref('events', lazy=True))

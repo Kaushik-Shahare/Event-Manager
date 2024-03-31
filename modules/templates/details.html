@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>session['details']</title>
+    <title>{{event.title}}</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,7 +14,7 @@
     />
 </head>
 <body class="{{ session['theme'] }}">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="/event">E.Manager</a>
     <button
       class="navbar-toggler"
@@ -84,21 +84,38 @@
     </div>
   </nav>
   {% if msg %}
-  <div class="msg">{{msg}}</div>
+    <div class="msg" style="top: 50px;">{{msg}}</div>
   {% endif %}
-  <div class="card" style="width: 18rem;">
-    <!-- <img src="{{ event.image_url }}" class="card-img-top" alt="Event image"> -->
-    <div class="card-body">
-      <h5 class="card-title">{{ event.title }}</h5>
-      <p class="card-text">{{ event.description }}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Date: {{ event.date }}</li>
-      <li class="list-group-item">Location: {{ event.location }}</li>
-      <li class="list-group-item">Organizer: {{ event.organizer }}</li>
-    </ul>
-    <div class="card-body">
-      <!-- <a href="{{ url_for('event_details', id=event.id) }}" class="card-link">Event Details</a> -->
+
+  <!-- Event Details -->
+  <div class="container mt-4">
+    <div class="card p-3">
+      <img
+        src="{{event.image_url}}"
+        class="card-img-top mb-3"
+        alt="Event Image"
+        style="height: 30vh; object-fit: cover;">
+      
+      <hr class="border-top border-2">
+
+      <div class="row mb-3">
+        <div class="col">
+            <h1>{{event.title}}</h1>
+        </div>
+        <div class="col text-right">
+          <H5 class="text-muted">Event Date :</H5>
+          <h5>{{ event.date.strftime('%B %d, %Y') }}</h5>
+        </div>
+      </div>
+
+      <hr class="border-top border-2">
+
+      <pre class="mb-3" >{{event.long_description}}</pre>
+
+      <hr class="border-top border-2">
+
+      <h3>Venue: {{event.location}}</h3>
+      <p>Organized by {{event.organizer_name}}</p>
     </div>
   </div>
 

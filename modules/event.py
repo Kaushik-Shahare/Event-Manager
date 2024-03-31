@@ -19,8 +19,9 @@ def details(event_id):
     # event = Event.query.filter_by(id=event_id).first()
     if event is None:
         flash('Event not found.')
-        return redirect(url_for('home'))
+        return redirect(url_for('event'))
     return render_template('details.html', event=event)
+
 
     
 @app.route('/event/register', methods=["GET", "POST"])
@@ -47,13 +48,15 @@ def create_event():
             if request.method == 'POST':
                 title = request.form.get('title')
                 description = request.form.get('description')
+                long_description = request.form.get('long_description')
+                image_url = request.form.get('image_url')
                 date = request.form.get('date')
                 date = datetime.strptime(date, '%Y-%m-%d').date()
                 location = request.form.get('location')
                 creator_id = session['username']
                 organizer_name = request.form.get("organizer_name")
 
-                event = Event(title=title, description=description, date=date, location=location, creator_id=creator_id)
+                event = Event(title=title, description=description, long_description=long_description, image_url=image_url, date=date, location=location, creator_id=creator_id, organizer_name=organizer_name)
                 db.session.add(event)
                 db.session.commit()
 

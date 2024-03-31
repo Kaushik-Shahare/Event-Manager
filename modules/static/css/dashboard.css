@@ -2,6 +2,7 @@
 body {
   background-color: #2b2b2b;
   color: #f5f5f5;
+  padding-top: 80px;
 }
 
 .navbar {
@@ -108,10 +109,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(100%);
 }
 
+hr {
+  color: white;
+}
+
+pre {
+  color: white;
+  white-space: pre-wrap;
+}
+
 /* Light mode CSS for the dashboard */
 body.light-theme {
   background-color: #ffffff;
   color: #000000;
+  padding-top: 80px;
 }
 
 body.light-theme .navbar {
@@ -149,9 +160,12 @@ body.light-theme .btn-primary:hover {
 body.light-theme .card {
   background-color: #ffffff;
 }
+body.light-theme .card-title {
+  color: #ffffff;
+}
 
 body.light-theme .card-text {
-  color: #000000;
+  color: #ffffff;
 }
 
 body.light-theme .text-muted {
@@ -218,4 +232,13 @@ body.light-theme ::placeholder {
 
 body.light-theme input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0%);
+}
+
+body.light-theme hr {
+  color: black;
+}
+
+body.light-theme pre {
+  color: black;
+  white-space: pre-wrap;
 }
