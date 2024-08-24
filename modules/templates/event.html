@@ -14,25 +14,25 @@
     />
     <style>
       .bg-image {
-          position: relative;
+        position: relative;
       }
 
       .bg-image::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background-color: rgba(0, 0, 0, 0.7);
-          z-index: 1;
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
       }
       
       .bg-image .card-body {
-          position: relative;
-          z-index: 2;
+        position: relative;
+        z-index: 2;
       }
-      </style>
+    </style>
   </head>
   <body class="{{ session['theme'] }}">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -54,19 +54,17 @@
             <a class="nav-link" href="/event#upcomingEvents">Upcoming Events</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/event#eventRegistration"
-              >Event Registration</a
-            >
+            <a class="nav-link" href="/event#eventRegistration">Event Registration</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/event_manager">Event Management</a>
           </li>
-          {% if 'role' in session and session['role'] == 'Admin' or 'role' in
-          session and session['role'] == 'Co-Admin' %}
+          {% if 'role' in session and (session['role'] == 'Admin' or session['role'] == 'Co-Admin') %}
           <li class="nav-item">
             <a class="nav-link" href="/event/create">Create Event</a>
           </li>
-          {% endif %} {% if 'role' in session and session['role'] == 'Admin' %}
+          {% endif %}
+          {% if 'role' in session and session['role'] == 'Admin' %}
           <li class="nav-item">
             <a class="nav-link" href="/user_management">User Management</a>
           </li>
@@ -134,20 +132,17 @@
     <!-- Event Registration -->
     <div id="eventRegistration" class="container mt-4">
       <h2>Event Registration</h2>
-      <!-- Event registration form here -->
-      <div id="eventRegistration1" class="container mt-4">
-        <form action="/event/register" method="post">
-          <div class="form-group">
-            <label for="eventId">Event ID</label>
-            <select class="form-control" id="eventId" name="event_id" required>
-              {% for event in events %}
-              <option value="{{ event.id }}">{{ event.title }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-      </div>
+      <form action="/event/register" method="post">
+        <div class="form-group">
+          <label for="eventId">Event ID</label>
+          <select class="form-control" id="eventId" name="event_id" required>
+            {% for event in events %}
+            <option value="{{ event.id }}">{{ event.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

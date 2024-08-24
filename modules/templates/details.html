@@ -8,10 +8,66 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+
     <link
       rel="stylesheet"
-      href="{{url_for('static',filename='css/dashboard.css')}}"
+      href="{{url_for('static', filename='css/dashboard.css')}}"
     />
+    <style>
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+        /* Inline CSS for specific adjustments */
+        /* .navbar {
+            padding: 15px 30px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+        }
+
+        .nav-link {
+            font-size: 1.1em;
+        } */
+
+        .btn-primary {
+            padding: 10px 20px;
+            font-size: 1.1em;
+        }
+
+        .msg {
+            font-size: 1.2em;
+            padding: 15px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .card-img-top {
+            height: 40vh; /* Increased height */
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        h3 {
+            font-size: 1.8em;
+        }
+
+        pre {
+            font-size: 1.1em;
+        }
+
+        .text-muted {
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body class="{{ session['theme'] }}">
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -33,19 +89,17 @@
           <a class="nav-link" href="/event#upcomingEvents">Upcoming Events</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/event#eventRegistration"
-            >Event Registration</a
-          >
+          <a class="nav-link" href="/event#eventRegistration">Event Registration</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/event_manager">Event Management</a>
         </li>
-        {% if 'role' in session and session['role'] == 'Admin' or 'role' in
-        session and session['role'] == 'Co-Admin' %}
+        {% if 'role' in session and (session['role'] == 'Admin' or session['role'] == 'Co-Admin') %}
         <li class="nav-item">
           <a class="nav-link" href="/event/create">Create Event</a>
         </li>
-        {% endif %} {% if 'role' in session and session['role'] == 'Admin' %}
+        {% endif %}
+        {% if 'role' in session and session['role'] == 'Admin' %}
         <li class="nav-item">
           <a class="nav-link" href="/user_management">User Management</a>
         </li>
@@ -84,35 +138,35 @@
     </div>
   </nav>
   {% if msg %}
-    <div class="msg" style="top: 50px;">{{msg}}</div>
+    <div class="msg" style="top: 60px;">{{msg}}</div>
   {% endif %}
 
   <!-- Event Details -->
-  <div class="container mt-4">
-    <div class="card p-3">
+  <div class="container mt-5">
+    <div class="card p-4">
       <img
         src="{{event.image_url}}"
-        class="card-img-top mb-3"
+        class="card-img-top mb-4"
         alt="Event Image"
-        style="height: 30vh; object-fit: cover;">
+        style="height: 40vh; object-fit: cover;">
       
-      <hr class="border-top border-2">
+      <hr class="border-top border-2 mb-4">
 
-      <div class="row mb-3">
+      <div class="row mb-4">
         <div class="col">
             <h1>{{event.title}}</h1>
         </div>
         <div class="col text-right">
-          <H5 class="text-muted">Event Date :</H5>
+          <h5 class="text-muted">Event Date :</h5>
           <h5>{{ event.date.strftime('%B %d, %Y') }}</h5>
         </div>
       </div>
 
-      <hr class="border-top border-2">
+      <hr class="border-top border-2 mb-4">
 
-      <pre class="mb-3" >{{event.long_description}}</pre>
+      <pre class="mb-4">{{event.long_description}}</pre>
 
-      <hr class="border-top border-2">
+      <hr class="border-top border-2 mb-4">
 
       <h3>Venue: {{event.location}}</h3>
       <p>Organized by {{event.organizer_name}}</p>
