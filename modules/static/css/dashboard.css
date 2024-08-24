@@ -118,11 +118,14 @@ pre {
   white-space: pre-wrap;
 }
 
+body {
+  padding-top: 80px;
+}
+
 /* Light mode CSS for the dashboard */
 body.light-theme {
   background-color: #ffffff;
   color: #000000;
-  padding-top: 80px;
 }
 
 body.light-theme .navbar {
@@ -270,8 +273,6 @@ body {
 
 /* Event Management Section */
 .event-management {
-  padding: 40px;
-  /* background: #222; */
   border-radius: 4px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   margin-top: 80px; /* Adjusted for navbar */
@@ -314,7 +315,7 @@ body {
 .event-management .inputBox input:focus ~ i,
 .event-management .inputBox input:valid ~ i {
   transform: translateY(-20px);
-  font-size: 0.8em;
+  font-size: 0.5em;
   color: #fff;
 }
 
