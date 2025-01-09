@@ -9,7 +9,7 @@ Link to the site
 Link to the static site
 
 ```
-    https://python-project-with-flask.vercel.app/
+    https://evtmanager.kaushikshahare.com/
 ```
 Please use the following Admin credentials for signin to test out full functionality of the site.
 
